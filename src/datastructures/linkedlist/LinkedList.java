@@ -29,36 +29,71 @@ public class LinkedList {
 
     public Node removeLast() {
         if (length == 0) return null;
-
         Node temp = head;
         Node pre = head;
-
-        while (temp != null) {
-//            System.out.printf("{value: %d, next: %s}\n", temp.value, temp.next);
-            if (length == 1) {
-                head = null;
-                tail = null;
-                return pre;
-            }
-
-            if (temp.next == null) {
-                pre.next = null;
-            }
-
-            pre = temp; // 3
-            temp = temp.next; // 4
+        while (temp.next != null) {
+            pre = temp;
+            temp = temp.next;
         }
-
+        tail = pre;
+        tail.next = null;
+        length--;
+        if (length == 0) {
+            head = null;
+            tail = null;
+        }
         return temp;
     }
 
     public void prepend(int value) {
         Node newNode = new Node(value);
-        newNode.next = head;
-
-        head = newNode;
-        length = length + 1;
+        if (length == 0) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            newNode.next = head;
+            head = newNode;
+        }
+        length++;
     }
+
+    public Node removeFirst() {
+        if (length == 0) return null;
+        Node temp = head;
+        head = head.next;
+        temp.next = null;
+        length--;
+        if (length == 0) {
+            tail = null;
+        }
+        return temp;
+    }
+
+    public Node get(int index) {
+        if (length == 0) return null;
+        if (index < 0 || index >= length) return null;
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return temp;
+    }
+
+// While version
+//    public Node get(int index) {
+//        if (length == 0) return null;
+//        if (index < 0 || index >= length) return null;
+//        Node temp = head;
+//        int counter = 0;
+//        while (temp.next != null) {
+//            if (counter == index) {
+//                return temp;
+//            }
+//            temp = temp.next;
+//            counter++;
+//        }
+//        return temp;
+//    }
 
 //    public boolean insert(int index, int value) {
 //        Node newNode = new Node(value);
@@ -92,8 +127,8 @@ public class LinkedList {
         System.out.println("Length: " + length);
     }
 
-    class Node {
-        int value;
+    public class Node {
+        public int value;
         Node next;
 
         Node(int value) {
