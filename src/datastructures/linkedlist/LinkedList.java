@@ -100,18 +100,26 @@ public class LinkedList {
             append(value);
             return true;
         }
-        Node temp = head;
-        Node pre = head;
-        for (int i = 0; i < index; i++) {
-            pre = temp;
-            temp = temp.next;
-        }
-
+        Node temp = get(index - 1);
         Node newNode = new Node(value);
-        pre.next = newNode;
-        newNode.next = temp;
+        newNode.next = temp.next;
+        temp.next = newNode;
         length++;
         return true;
+    }
+
+    public Node remove(int index) {
+        if (index < 0 || index > length) return null;
+        if (index == 0) return removeFirst();
+        if (index == length - 1) return removeLast();
+
+        Node pre = get(index - 1);
+        Node temp = pre.next;
+
+        pre.next = temp.next;
+        temp.next = null;
+        length--;
+        return temp;
     }
 
     public void printList() {

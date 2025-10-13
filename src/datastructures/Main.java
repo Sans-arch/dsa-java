@@ -10,7 +10,8 @@ public class Main {
         linkedList.append(23);
         linkedList.append(7);
 
-        linkedList.insert(4, 50); // 11 3 23 7
+        System.out.println("removido: " + linkedList.remove(2).value); // 11 3 23 7  --->  3 23 7
+        System.out.println();
         linkedList.printList();
     }
 }
