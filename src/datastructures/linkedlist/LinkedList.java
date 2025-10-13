@@ -79,33 +79,40 @@ public class LinkedList {
         return temp;
     }
 
-// While version
-//    public Node get(int index) {
-//        if (length == 0) return null;
-//        if (index < 0 || index >= length) return null;
-//        Node temp = head;
-//        int counter = 0;
-//        while (temp.next != null) {
-//            if (counter == index) {
-//                return temp;
-//            }
-//            temp = temp.next;
-//            counter++;
-//        }
-//        return temp;
-//    }
+    public boolean set(int index, int value) {
+        if (length == 0) return false;
+        if (index < 0 || index >= length) return false;
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        temp.value = value;
+        return true;
+    }
 
-//    public boolean insert(int index, int value) {
-//        Node newNode = new Node(value);
-//
-//        Node temp = head;
-//        int counter = 0;
-//        while (temp != null) {
-//            if (counter == index) {
-//                newNode.
-//            }
-//        }
-//    }
+    public boolean insert(int index, int value) {
+        if (index < 0 || index > length) return false;
+        if (index == 0) {
+            prepend(value);
+            return true;
+        }
+        if (index == length) {
+            append(value);
+            return true;
+        }
+        Node temp = head;
+        Node pre = head;
+        for (int i = 0; i < index; i++) {
+            pre = temp;
+            temp = temp.next;
+        }
+
+        Node newNode = new Node(value);
+        pre.next = newNode;
+        newNode.next = temp;
+        length++;
+        return true;
+    }
 
     public void printList() {
         Node temp = head;
