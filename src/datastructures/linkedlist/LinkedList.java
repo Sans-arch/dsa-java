@@ -144,6 +144,28 @@ public class LinkedList {
         }
     }
 
+    public void removeDuplicates() {
+        Node current = head;
+        for (int i = 0; i < length; i++) {
+            Node runner = current;
+            for (int j = 0; j <= length; j++) { // 5 5
+                if (current == null) return;
+                if (runner == null) {
+                    current = current.next;
+                    runner = current;
+                } else {
+                    if (runner.next != null && runner.next.value == current.value) {
+                        runner.next = runner.next.next;
+                    }
+                    if (runner.next == null && runner.value == current.value) {
+                        current.next = runner.next;
+                    }
+                    runner = runner.next;
+                }
+            }
+        }
+    }
+
     public void getHead() {
         System.out.println("Head: " + head.value);
     }
