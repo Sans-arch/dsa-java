@@ -5,21 +5,19 @@ import datastructures.linkedlist.LinkedList;
 public class Main {
 
     public static void main(String[] args) {
-//        LinkedList linkedList = new LinkedList(1);
-//        linkedList.append(2);
-//        linkedList.append(3);
-//        linkedList.append(1);
-//        linkedList.append(4);
-//        linkedList.append(2);
-//        linkedList.append(5);
-//        linkedList.append(1);
+        LinkedList myLinkedList = new LinkedList(3);
+        myLinkedList.append(5);
+        myLinkedList.append(8);
+        myLinkedList.append(5);
+        myLinkedList.append(10);
+        myLinkedList.append(2);
+        myLinkedList.append(1);
+        // 3 5 8 5 10 2 1
+        // x: 5 d1 ----> 3 2 1
+        //      d2 ----> 5 8 5 10
+        // 3 2 1 5 8 5 10
 
-        LinkedList linkedList = new LinkedList(5);
-        linkedList.append(5);
-        linkedList.append(5);
-
-        linkedList.removeDuplicates();
-
-        linkedList.printList();
+        myLinkedList.partitionList(5);
+//        myLinkedList.printList();
     }
 }

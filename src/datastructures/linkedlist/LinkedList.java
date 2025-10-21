@@ -144,6 +144,11 @@ public class LinkedList {
         }
     }
 
+    public void makeEmpty() {
+        head = null;
+        length = 0;
+    }
+
     public void removeDuplicates() {
         Node current = head;
         for (int i = 0; i < length; i++) {
@@ -164,6 +169,51 @@ public class LinkedList {
                 }
             }
         }
+    }
+
+    public int toBinary() { // 1 1 1 0
+        if (head == null) return 0;
+        int total = 0;
+        Node current = head;
+
+        while(current != null) {
+            total = (total * 2) + current.value;
+            current = current.next;
+        }
+
+        return total;
+    }
+
+    public void partitionList(int x) {
+        if (head == null) return;
+        var d1 = new LinkedList(0);
+        var d2 = new LinkedList(0);
+
+        var prev1 = d1.head;
+        var prev2 = d2.head;
+        var temp = head;
+
+        while (temp.next != null) {
+            if (temp.value < x) {
+                d1.append(temp.value);
+            }
+            if (temp.value >= x)  {
+                d2.append(temp.value);
+            }
+            temp = temp.next;
+        }
+
+        System.out.println("d1:");
+        d1.head = d1.head.next;
+        d1.printList();
+
+        System.out.println();
+        d2.head = d2.head.next;
+        System.out.println("d2:");
+        d2.printList();
+
+        System.out.println("d1 current: " + prev1.value);
+        System.out.println("d2 current: " + prev2.value);
     }
 
     public void getHead() {
