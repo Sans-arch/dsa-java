@@ -40,6 +40,14 @@ public class DoublyLinkedList {
         return temp;
     }
 
+    public void prepend(int value) {
+        Node node = new Node(value);
+        node.next = head;
+        head.prev = node;
+        head = node;
+        length++;
+    }
+
     public void printList() {
         Node temp = head;
         while (temp != null) {
