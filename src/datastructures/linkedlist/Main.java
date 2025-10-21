@@ -1,6 +1,4 @@
-package datastructures;
-
-import datastructures.linkedlist.LinkedList;
+package datastructures.linkedlist;
 
 public class Main {
 
