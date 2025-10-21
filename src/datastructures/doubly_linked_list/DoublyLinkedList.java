@@ -42,9 +42,14 @@ public class DoublyLinkedList {
 
     public void prepend(int value) {
         Node node = new Node(value);
-        node.next = head;
-        head.prev = node;
-        head = node;
+        if (length == 0) {
+            head = node;
+            tail = node;
+        } else {
+            node.next = head;
+            head.prev = node;
+            head = node;
+        }
         length++;
     }
 
